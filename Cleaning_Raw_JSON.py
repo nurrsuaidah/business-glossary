@@ -1,9 +1,5 @@
 # Databricks notebook source
-# MAGIC %md
-# MAGIC ####Import Libraries
-
-# COMMAND ----------
-
+# Import Libraries
 import re
 import os
 import pyodbc
