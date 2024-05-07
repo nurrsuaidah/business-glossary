@@ -503,6 +503,7 @@ result_df.write.parquet(path=data_steward_validation, mode="overwrite")
 
 # COMMAND ----------
 
+# Reload the saved parquet to check the rows count
 process_csv = get_dir_content(data_steward_validation)
 matchers = ['.parquet']
 process_csv_test = [s for s in process_csv if any(xs in s for xs in matchers)]
