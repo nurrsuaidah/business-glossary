@@ -6,15 +6,16 @@
 
 # COMMAND ----------
 
-# MAGIC %pip install pycryptodome==3.15.0
-# MAGIC %pip install PyPDF2
-# MAGIC %pip install azure-ai-formrecognizer==3.3.2
-# MAGIC %pip install mysql-connector-python
-# MAGIC %pip install pymysql
-# MAGIC %pip install sqlalchemy
-# MAGIC %pip install pandas
-# MAGIC %pip install tqdm
-# MAGIC %pip install azure-identity
+# Install libraries
+%pip install pycryptodome==3.15.0
+%pip install PyPDF2
+%pip install azure-ai-formrecognizer==3.3.2
+%pip install mysql-connector-python
+%pip install pymysql
+%pip install sqlalchemy
+%pip install pandas
+%pip install tqdm
+%pip install azure-identity
 
 # COMMAND ----------
 
@@ -54,7 +55,7 @@ spark.conf.set("fs.azure.account.oauth2.client.endpoint.{0}.dfs.core.windows.net
 
 container = 'enigma'
 
-# token credential for ADLS
+# Token credential for ADLS
 token_credential = ClientSecretCredential(
     tenant_id = tenant,
     client_id = app_id,
@@ -67,6 +68,7 @@ output_directory = "POC/Process/Extracted_Output/Raw-1/"
 
 # COMMAND ----------
 
+# Token credential for Azure Document Intelligence
 endpoint = "https://ptsg5edhformrecog01.cognitiveservices.azure.com/"
 key = "2fa44aedc42d48b38e1d6a5430dd3042"
 credential = AzureKeyCredential(key)
@@ -185,6 +187,7 @@ def pdf_to_json(output_dir,input_dir,file_list):
 
 # COMMAND ----------
 
+# Save the process files into ADLS
 docFormat = 'PDF'
 file_list = get_blob(container,input_directory,docFormat)
 pdf_to_json(output_directory,input_directory,file_list)
